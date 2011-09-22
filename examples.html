@@ -106,6 +106,10 @@
                 removeConfirmation: true
             });
             
+            $('#onlyAutocompleteOption').tagit({
+                availableTags: sampleTags,
+                onlyAutocomplete: true
+            });
 	    });
 	</script>
 
@@ -220,6 +224,15 @@
 			<input type="submit" value="Submit">
 	    </form>
 
+        <hr>
+        <h3>Only Autocomplete</h3>
+   	    <form>
+		    <p>
+                Allow to add tags only through autocomplete
+            </p>
+		    <ul id="onlyAutocompleteOption"></ul>
+			<input type="submit" value="Submit">
+	    </form>
     </div>
 
 

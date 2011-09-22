@@ -75,7 +75,10 @@
             // Event callbacks.
             onTagAdded  : null,
             onTagRemoved: null,
-            onTagClicked: null
+            onTagClicked: null,
+			
+			// Only create tags from autocomplete
+            onlyAutocomplete: false
         },
 
 
@@ -197,15 +200,21 @@
                         )
                     ) {
                         event.preventDefault();
-                        that.createTag(that._cleanedInput());
+                        if (! that.options.onlyAutocomplete) {
+                            that.createTag(that._cleanedInput());
 
-                        // The autocomplete doesn't close automatically when TAB is pressed.
-                        // So let's ensure that it closes.
-                        that._tagInput.autocomplete('close');
+                            // The autocomplete doesn't close automatically when TAB is pressed.
+                            // So let's ensure that it closes.
+                            that._tagInput.autocomplete('close');
+                        } else {
+                            that._tagInput.val('');
+                        }
                     }
                 }).blur(function(e){
-                    // Create a tag when the element loses focus (unless it's empty).
-                    that.createTag(that._cleanedInput());
+                    if (! that.options.onlyAutocomplete) {
+                        // Create a tag when the element loses focus (unless it's empty).
+                        that.createTag(that._cleanedInput());
+                    }
                 });
                 
 
